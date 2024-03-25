@@ -1,11 +1,10 @@
 CREATE TABLE Person (
     PersonId INT PRIMARY KEY  NOT NULL,
     Nickname VARCHAR(30),
-    Bday DATETIME,
+    Bday VARCHAR(10),
     Email VARCHAR(100),
-    Profilepicture IMAGE,
+    Profilepicture VARCHAR(max),
     Password VARCHAR(100),
-    SettingsId INT
 );
 
 CREATE TABLE AchievementStatus (
@@ -32,7 +31,7 @@ CREATE TABLE Color (
 
 CREATE TABLE Settings (
 	SettingsId INT PRIMARY KEY NOT NULL,
-	InterfaceLanguageFID INT FOREIGN KEY REFERENCES InterfaceLanguage(InterfaceLanguageId),
+	InterfaceLanguageFId INT FOREIGN KEY REFERENCES InterfaceLanguage(InterfaceLanguageId),
 	Notification bit,
 	ColorFId INT FOREIGN KEY REFERENCES Color(ColorId),
 	PersonFId INT FOREIGN KEY REFERENCES Person(PersonId)
@@ -45,15 +44,14 @@ CREATE TABLE Country (
 
 CREATE TABLE VisitedCountries (
 	VisitedCountries INT PRIMARY KEY NOT NULL,
-	PersonFID INT FOREIGN KEY REFERENCES Person(PersonId),
-	CountryFID INT FOREIGN KEY REFERENCES Country(CountryId)
+	PersonFId INT FOREIGN KEY REFERENCES Person(PersonId),
+	CountryFId INT FOREIGN KEY REFERENCES Country(CountryId)
 );
 
 CREATE TABLE Photo (
-	PhotoId INT PRIMARY KEY,
-	Photo image,
-	CountryFID INT FOREIGN KEY REFERENCES Country(CountryId)
+	PhotoId INT PRIMARY KEY NOT NULL,
+	Photo varchar(max),
+	CountryFId INT FOREIGN KEY REFERENCES Country(CountryId),
+	PersonFId INT FOREIGN KEY REFERENCES Person(PersonId)
 );
-
-
 
